@@ -1,0 +1,58 @@
+# TSP Solver using Evolutionary Algorithms
+
+This project implements three evolutionary algorithm approaches to solve the Traveling Salesman Problem (TSP).
+
+## Implementations
+
+### 1. `tsp_small.ipynb` - GA with Local search algorithm
+- **Best for**: Problems with ≤50 cities
+- **Can handle**: Up to 100 cities (~3 minutes runtime)
+- **Approach**: Genetic Algorithm with 2-opt local search
+- **Trade-off**: Slower but finds better solutions
+
+### 2. `tsp.ipynb` - Basic Genetic Algorithm
+- **Best for**: Problems with ≥100 cities
+- **Approach**: Standard GA without local search, but with different parameters
+- **Optimal Configuration**:
+  - Mutation: Insert mutation
+  - Crossover: Order crossover (OX)
+  - Selection: Tournament selection
+  - Initialization: Mixed (30% greedy, 70% random)
+- **Trade-off**: Faster but may find suboptimal solutions
+
+### 3. `tsp_es.ipynb` - Evolution Strategy
+- **Best for**: Problems with ≥100 cities
+- **Approach**: both (μ + λ) and (μ, λ) ES approaches
+- **Optimal Configuration**:
+  - Selection: Uniform parent selection
+  - Initialization: Mixed (30% greedy, 70% random)
+  - Mutation: Inversion mutation
+  - Crossover: Order crossover (OX)
+- **Trade-off**: Faster, results similar with GA
+
+## Key Findings
+
+All three implementations use **mixed initialization** (combining greedy nearest-neighbor and random solutions) for optimal starting population quality and diversity.
+
+For large problems (100+ cities), **GA and ES perform similarly** with different operators. The choice between them depends on computational budget and desired solution quality.
+
+## Some of the Results
+
+### Problem: `problem_r1_500.npy` (500 cities)
+
+**Genetic Algorithm**:
+![GA Results](image-2.png)
+
+**Evolution Strategy**:
+![ES Results](image-1.png)
+
+### Problem: `problem_r1_50.npy` (50 cities)
+
+**GA with Local Search (GA + 2-opt)**:
+![GA with LS Results](image-3.png)
+
+## Usage
+
+Choose the appropriate notebook based on your problem size:
+- **Small problems (≤50 cities)**: Use `tsp_small.ipynb` for best results
+- **Large problems (≥100 cities)**: Use `tsp.ipynb` or `tsp_es.ipynb` for faster runtime
