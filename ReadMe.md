@@ -56,3 +56,13 @@ For large problems (100+ cities), **GA and ES perform similarly** with different
 Choose the appropriate notebook based on your problem size:
 - **Small problems (≤50 cities)**: Use `tsp_small.ipynb` for best results
 - **Large problems (≥100 cities)**: Use `tsp.ipynb` or `tsp_es.ipynb` for faster runtime
+
+
+
+## REVIEW:
+The code is well presented and clear, easy to understand. 
+In my opinion 3 different solutions are too much, probably it would be better to have a single solution adaptive for the number of cities. Like an algorithm that if the cities are 50< use tsp_small the other one if the number increase. 
+
+The tsp_small converge fast, it probably is a good think, but if you really need just 50 generations to find one of the best solutions probably something is wrong. In your tests and in mines too after the 50 generations the solution doesn't improve, it can be that the cities in this type of problems are limited but you can try to let the initialization to be full random, because one problem could be that using all this local-search limits a lot your exploration. Another idea could be to change the way that you use for the mutation, reversing the order is a good strategies but using it also keep the majority of the edges, so again very good for exploitation, not for exploration.
+
+For the others two approaches, the GA seem to work a litte bit better. Here my doubts are also the fact that I probably prefer a full random initialization, but with more cities a part of the greedy one make sense, and the fact that when you create the population you either make a crossover or make a mutation, you can try to mutate the child after the crossover. Both of the problems converge also really fast, here again could be a problem of not enough exploration, hard to tell.
